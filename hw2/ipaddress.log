@@ -1,0 +1,155 @@
+# IPython log file
+
+# Tue, 29 Sep 2020 20:30:07
+ipaddress.ip_address('192.0.2.1')
+# Tue, 29 Sep 2020 20:30:51
+import ipaddress
+# Tue, 29 Sep 2020 20:30:54
+ipaddress.ip_address('192.0.2.1')
+#[Out]# IPv4Address('192.0.2.1')
+# Tue, 29 Sep 2020 20:31:22
+ipaddress.ip_address('2001:DB8::1')
+#[Out]# IPv6Address('2001:db8::1')
+# Tue, 29 Sep 2020 20:31:47
+ipaddress.ip_address(3221225985)
+#[Out]# IPv4Address('192.0.2.1')
+# Tue, 29 Sep 2020 20:32:03
+ipaddress.ip_address(42540766411282592856903984951653826561)
+#[Out]# IPv6Address('2001:db8::1')
+# Tue, 29 Sep 2020 20:32:41
+ipaddress.ip_address(1)
+#[Out]# IPv4Address('0.0.0.1')
+# Tue, 29 Sep 2020 20:32:55
+ipaddress.IPv4Address(1)
+#[Out]# IPv4Address('0.0.0.1')
+# Tue, 29 Sep 2020 20:33:05
+ipaddress.IPv6Address(1)
+#[Out]# IPv6Address('::1')
+# Tue, 29 Sep 2020 20:34:24
+ipaddress.ip_network('192.0.2.0/24')
+#[Out]# IPv4Network('192.0.2.0/24')
+# Tue, 29 Sep 2020 20:34:39
+ipaddress.ip_network('2001:db8::0/96')
+#[Out]# IPv6Network('2001:db8::/96')
+# Tue, 29 Sep 2020 20:35:35
+ipaddress.ip_network('192.0.2.1/24')
+# Tue, 29 Sep 2020 20:35:52
+ipaddress.ip_network('192.0.2.1/24', strict=False)
+#[Out]# IPv4Network('192.0.2.0/24')
+# Tue, 29 Sep 2020 20:36:21
+ipaddress.ip_network(3221225984)
+#[Out]# IPv4Network('192.0.2.0/32')
+# Tue, 29 Sep 2020 20:36:34
+ipaddress.ip_network(42540766411282592856903984951653826560)
+#[Out]# IPv6Network('2001:db8::/128')
+# Tue, 29 Sep 2020 20:37:45
+ipaddress.ip_interface('192.0.2.1/24')
+#[Out]# IPv4Interface('192.0.2.1/24')
+# Tue, 29 Sep 2020 20:38:03
+ipaddress.ip_interface('2001:db8::1/96')
+#[Out]# IPv6Interface('2001:db8::1/96')
+# Tue, 29 Sep 2020 20:38:30
+addr4 = ipaddress.ip_address('192.0.2.1')
+# Tue, 29 Sep 2020 20:38:45
+addr6 = ipaddress.ip_address('2001:db8::1')
+# Tue, 29 Sep 2020 20:38:50
+addr6.version
+#[Out]# 6
+# Tue, 29 Sep 2020 20:38:55
+addr4.version
+#[Out]# 4
+# Tue, 29 Sep 2020 20:39:25
+host4 = ipaddress.ip_interface('192.0.2.1/24')
+# Tue, 29 Sep 2020 20:39:30
+host4.network
+#[Out]# IPv4Network('192.0.2.0/24')
+# Tue, 29 Sep 2020 20:40:02
+host6 = ipaddress.ip_interface('2001:db8::1/96')
+# Tue, 29 Sep 2020 20:40:08
+host6.network
+#[Out]# IPv6Network('2001:db8::/96')
+# Tue, 29 Sep 2020 20:40:33
+net4 = ipaddress.ip_network('192.0.2.0/24')
+# Tue, 29 Sep 2020 20:40:40
+net4.num_addresses
+#[Out]# 256
+# Tue, 29 Sep 2020 20:41:03
+net6 = ipaddress.ip_network('2001:db8::0/96')
+# Tue, 29 Sep 2020 20:41:11
+net6.num_addresses
+#[Out]# 4294967296
+# Tue, 29 Sep 2020 20:41:36
+net4 = ipaddress.ip_network('192.0.2.0/24')
+# Tue, 29 Sep 2020 20:41:49
+for x in net4.hosts():
+    print(x)
+    
+# Tue, 29 Sep 2020 20:42:27
+net4 = ipaddress.ip_network('192.0.2.0/24')
+# Tue, 29 Sep 2020 20:42:35
+net4.netmask
+#[Out]# IPv4Address('255.255.255.0')
+# Tue, 29 Sep 2020 20:42:42
+net4.hostmask
+#[Out]# IPv4Address('0.0.0.255')
+# Tue, 29 Sep 2020 20:43:05
+net6 = ipaddress.ip_network('2001:db8::0/96')
+# Tue, 29 Sep 2020 20:43:10
+net6.netmask
+#[Out]# IPv6Address('ffff:ffff:ffff:ffff:ffff:ffff::')
+# Tue, 29 Sep 2020 20:43:17
+net6.hostmask
+#[Out]# IPv6Address('::ffff:ffff')
+# Tue, 29 Sep 2020 20:43:35
+addr6.exploded
+#[Out]# '2001:0db8:0000:0000:0000:0000:0000:0001'
+# Tue, 29 Sep 2020 20:43:44
+addr6.compressed
+#[Out]# '2001:db8::1'
+# Tue, 29 Sep 2020 20:43:51
+net6.exploded
+#[Out]# '2001:0db8:0000:0000:0000:0000:0000:0000/96'
+# Tue, 29 Sep 2020 20:43:57
+net6.compressed
+#[Out]# '2001:db8::/96'
+# Tue, 29 Sep 2020 20:44:17
+net4[1]
+#[Out]# IPv4Address('192.0.2.1')
+# Tue, 29 Sep 2020 20:44:25
+net4[-1]
+#[Out]# IPv4Address('192.0.2.255')
+# Tue, 29 Sep 2020 20:44:30
+net6[1]
+#[Out]# IPv6Address('2001:db8::1')
+# Tue, 29 Sep 2020 20:44:36
+net6[-1]
+#[Out]# IPv6Address('2001:db8::ffff:ffff')
+# Tue, 29 Sep 2020 20:45:19
+addr4 = ipaddress.ip_address('192.0.2.1')
+# Tue, 29 Sep 2020 20:45:37
+addr4 in ipaddress.ip_network('192.0.2.0/24')
+#[Out]# True
+# Tue, 29 Sep 2020 20:45:59
+addr4 in ipaddress.ip_network('192.0.3.0/24')
+#[Out]# False
+# Tue, 29 Sep 2020 20:46:42
+ipaddress.ip_address('192.0.2.1') < ipaddress.ip_address('192.0.2.2')
+#[Out]# True
+# Tue, 29 Sep 2020 20:47:12
+addr4 = ipaddress.ip_address('192.0.2.1')
+# Tue, 29 Sep 2020 20:47:18
+str(addr4)
+#[Out]# '192.0.2.1'
+# Tue, 29 Sep 2020 20:47:24
+int(addr4)
+#[Out]# 3221225985
+# Tue, 29 Sep 2020 20:48:43
+ipaddress.ip_address("192.168.0.256")
+# Tue, 29 Sep 2020 20:51:46
+try:
+    network = ipaddress.IPv4Network(address)
+except ValueError:
+    print('address/netmask is invalid for IPv4:', address)
+    
+# Wed, 30 Sep 2020 09:56:59
+exit()
