@@ -1,9 +1,10 @@
 import netifaces
+import ipaddress
 
 
 def get_interfaces():
     """
-    Computer's IP configuration:
+    Returns a list of your computer's IP configuration:
 
     ['lo0', 'gif0', 'stf0', 'XHC20', 'en0', 'p2p0', 'awdl0',
      'en1', 'bridge0', 'utun0']
@@ -14,7 +15,7 @@ def get_interfaces():
 
 def get_mac(interface):
     """
-    returns MAC address for given interface string
+    returns MAC address for given interface
 
     example:
 
@@ -26,11 +27,15 @@ def get_mac(interface):
     link_layer_interfaces = netifaces.interfaces()
 
     if interface in link_layer_interfaces:
-        address = netifaces.ifaddresses(interface)
-        mac_addrs = address[netifaces.AF_LINK]
-        mac_address = mac_addrs[0]
 
-        return mac_address.get('addr')
+        address = netifaces.ifaddresses(interface)
+
+        if address != {}:
+            mac_addrs = address[netifaces.AF_LINK]
+            mac_address = mac_addrs[0]
+            return mac_address.get('addr')
+        else:
+            print('MAC address does not exist for this interface')
 
 
 def get_ips(interface):
@@ -65,17 +70,15 @@ def get_ips(interface):
 
 def get_netmask(interface):
     """
-    For the given interface string, return a dictionary with the
-    IPv4 and IPv6 netmask objects (as IPv4/v6Address objects) for that
-    interface
+    returns a dictionary with the IPv4 and IPv6 netmask objects 
+    (as IPv4/v6Address objects) for that interface
 
-    Args:
-      interface (str): String representation of the interface
-          (e.g. "eth0" or "en0")
+    Example:
+      get_netmask('en0')
 
-    Returns: (dict) Dictionary with the following form
+    Returns:
       {'v4': ipaddress.IPv4Address('255.255.255.0'),
-       'v6': ipaddress.IPv6Address('ffff:ffff:ffff:ffff::')}
+       'v6': ipaddress.IPv6Address('ffff:ffff:ffff:ffff::/64')}
     """
 
     link_layer_interfaces = netifaces.interfaces()
@@ -94,21 +97,33 @@ def get_netmask(interface):
             ip6_netmask = ip_addr[0]['netmask']
             netmask_dict['v6'] = f"ipaddress.IPv6Address('{ip6_netmask}')"
 
-    print(netmask_dict)   
     return netmask_dict
 
 
 def get_network(interface):
-    """For the given interface string, return a dictionary with
-    the IPv4 and IPv6 network objects for that interface
+    """
+    return a dictionary with the IPv4 and IPv6 network objects 
+    for that interface
 
-    Args:
-      interface (str): String representation of the interface
-          (e.g. "eth0" or "en0")
+    Example
+      get_network('en0')
 
-    Returns: (dict) Dictionary with the following form
-      {'v4': ipaddress.IPv4Network('192.168.65.0/24'),
-       'v6': ipaddress.IPv6Network('fe80::/64')}
+    Returns
+      {'v4': ipaddress.IPv4Network('192.168.1.100/32')}
     """
 
-   
+    link_layer_interfaces = netifaces.interfaces()
+    address = netifaces.ifaddresses(interface)
+
+    network_dict = {}
+
+    ip4_addr = address[netifaces.AF_INET]
+    ip4_address = ip4_addr[0]['addr']
+    ip4_network = ipaddress.IPv4Network(ip4_address)
+    network_dict['v4'] = f"ipaddress.IPv4Network('{ip4_network}')"
+
+    ip6_addr = address[netifaces.AF_INET6]
+    ip6_address = ip6_addr[0]['addr']
+    # ip6_network = ipaddress.IPv6Network(ip6_address)
+    print(network_dict)
+    return network_dict
