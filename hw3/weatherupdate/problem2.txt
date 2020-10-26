@@ -1,0 +1,38 @@
+----------BEFORE----------
+
+root@node00:/lab# netstat
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node   Path
+root@node00:/lab# 
+
+
+----------DURING----------
+
+root@node00:/lab# netstat
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 node00:58438            node00:freeciv          TIME_WAIT  
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  3      [ ]         STREAM     CONNECTED     1432187  
+unix  3      [ ]         STREAM     CONNECTED     1432186  
+unix  3      [ ]         STREAM     CONNECTED     1432185  
+unix  3      [ ]         STREAM     CONNECTED     1432189  
+unix  3      [ ]         STREAM     CONNECTED     1432191  
+unix  3      [ ]         STREAM     CONNECTED     1432188  
+unix  3      [ ]         STREAM     CONNECTED     1432190  
+unix  3      [ ]         STREAM     CONNECTED     1432192  
+root@node00:/lab# 
+
+
+----------AFTER----------
+
+root@node00:/lab# netstat
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 node00:58438            node00:freeciv          TIME_WAIT  
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node   Path
+root@node00:/lab# 
